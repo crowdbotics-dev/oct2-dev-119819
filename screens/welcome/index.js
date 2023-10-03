@@ -1,29 +1,27 @@
-import React from "react"
-import {
-  View,
-  Image,
-  Text,
-  ScrollView,
-  SafeAreaView,
-  StyleSheet
-} from "react-native"
+import { useNavigation } from "@react-navigation/native";
+import { Pressable } from "react-native";
+import React from "react";
+import { View, Image, Text, ScrollView, SafeAreaView, StyleSheet } from "react-native";
 
 const WelcomeScreen = () => {
-  return (
-    <SafeAreaView style={styles.container}>
+  const navigation = useNavigation();
+  return <SafeAreaView style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollView}>
         <View style={styles.group} />
         <View style={styles.group}>
           <Image style={styles.logo} source={require("./logo.png")} />
-          <Text style={styles.text}>
+          <Pressable onPress={() => {
+          navigation.navigate("ScreenAI2");
+        }}><Text style={styles.text}>
             Let's build something amazing together!
-          </Text>
+          </Text></Pressable>
         </View>
-        <Text style={styles.footer}>Made with ❤️ by Crowdbotics</Text>
+        <Pressable onPress={() => {
+        navigation.navigate("ScreenAI4");
+      }}><Text style={styles.footer}>Made with ❤️ by Crowdbotics</Text></Pressable>
       </ScrollView>
-    </SafeAreaView>
-  )
-}
+    </SafeAreaView>;
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -59,6 +57,5 @@ const styles = StyleSheet.create({
     fontWeight: 700,
     marginBottom: 20
   }
-})
-
-export default WelcomeScreen
+});
+export default WelcomeScreen;
